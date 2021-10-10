@@ -18,9 +18,9 @@ public class CSVReader{
                  while((line = in.readLine()) != null) {
                      empList.add(DataHandler.employeePopulate(line));
                      out.newLine();
-                     out.write(in.readLine());
+                     out.write(line);
                  }
-             }  catch(IOException | ParseException e){
+        }  catch(IOException | ParseException e){
                  e.printStackTrace();
         }
         DataHandler.employeeListDuplicateChecker(empList);

@@ -14,7 +14,7 @@ public class EmployeeMain {
         DBWriter.createDatabase(dbPath);
         DBWriter.createTable(dbPath);
         CSVReader.CSVRead(employeesList);
-        DBWriter.insertData(dbPath, CSVReader.CSVRead(employeesList));
+        DBWriter.insertData(dbPath, employeesList);
 
     }
 }
