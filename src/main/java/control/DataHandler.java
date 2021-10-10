@@ -49,7 +49,8 @@ public class DataHandler {
             System.exit(1);
         }
         Employee emp = new Employee(Integer.valueOf(empList[0]), empList[1], empList[2], empList[3].charAt(0),
-                empList[6], dateFormat(empList[7]), dateFormat(empList[8]), Integer.valueOf(empList[9]));
+                empList[4], empList[5].charAt(0), empList[6], dateFormat(empList[7]),
+                dateFormat(empList[8]), Integer.valueOf(empList[9]));
         return emp;
     }
 

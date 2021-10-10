@@ -1,5 +1,7 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -11,7 +13,7 @@ public class Employee {
     private Date dob, doj;
 
     public Employee(Integer id, String prefix, String fName, char initial, String lName,
-                    Date dob, Date doj, Integer salary) {
+                    char gender, String email, Date dob, Date doj, Integer salary) {
     }
 
     public Integer getId() {
@@ -90,8 +92,8 @@ public class Employee {
         return doj;
     }
 
-    public void setDoj(Date doj) {
-        this.doj = doj;
+    public void setDoj(String doj) throws ParseException {
+        this.doj = new SimpleDateFormat("MM/dd/yyyy").parse(doj);
     }
 
     @Override
@@ -99,7 +101,11 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return initial == employee.initial && gender == employee.gender && Objects.equals(id, employee.id) && Objects.equals(salary, employee.salary) && Objects.equals(prefix, employee.prefix) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) && Objects.equals(dob, employee.dob) && Objects.equals(doj, employee.doj);
+        return initial == employee.initial && gender == employee.gender && Objects.equals(id, employee.id) &&
+                Objects.equals(salary, employee.salary) && Objects.equals(prefix, employee.prefix)
+                && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName)
+                && Objects.equals(email, employee.email) && Objects.equals(dob, employee.dob)
+                && Objects.equals(doj, employee.doj);
     }
 
     @Override

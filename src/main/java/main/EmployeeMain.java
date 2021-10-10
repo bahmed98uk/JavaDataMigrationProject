@@ -11,7 +11,10 @@ public class EmployeeMain {
         final String employeeTable = "employees";
         ArrayList<Employee> employeesList = new ArrayList<>();
 
-        CSVReader.CSVRead(employeesList);
         DBWriter.createDatabase(dbPath);
+        DBWriter.createTable(dbPath);
+        CSVReader.CSVRead(employeesList);
+        DBWriter.insertData(dbPath, CSVReader.CSVRead(employeesList));
+
     }
 }
