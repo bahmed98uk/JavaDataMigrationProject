@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class CSVReader{
 
-    public static ArrayList<Employee> CSVRead(ArrayList<Employee> empList){
+    public static void CSVRead(ArrayList<Employee> empList){
         String line = null;
 
         try (BufferedReader in = new BufferedReader(new FileReader("EmployeeRecords.csv"));
@@ -24,6 +24,5 @@ public class CSVReader{
                  e.printStackTrace();
         }
         DataHandler.employeeListDuplicateChecker(empList);
-        return empList;
     }
 }

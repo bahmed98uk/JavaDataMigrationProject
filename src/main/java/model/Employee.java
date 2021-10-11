@@ -92,8 +92,9 @@ public class Employee {
         return doj;
     }
 
-    public void setDoj(String doj) throws ParseException {
-        this.doj = new SimpleDateFormat("MM/dd/yyyy").parse(doj);
+    public void setDoj(Date doj) throws ParseException {
+//        this.doj = new SimpleDateFormat("MM/dd/yyyy").parse(doj);
+        this.doj = doj;
     }
 
     @Override

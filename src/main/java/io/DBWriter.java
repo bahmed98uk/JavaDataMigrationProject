@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class DBWriter {
 
+    private static final String SQL_TRUNCATE = "TRUNCATE employees";
     private static final String SQL_INSERT = "INSERT INTO employees (EmpID, NamePrefix, FirstName, MiddleInitial, LastName, Gender, Email, DateofBirth, DateofJoining, Salary) VALUES(?,?,?,?,?,?,?,?,?,?)";
     public static String mysql = "jdbc:mysql://localhost:3306/";
     public static String user = "root";
@@ -26,7 +27,6 @@ public class DBWriter {
 
     public static void createTable(String dataPath){
         try (Connection conn = DriverManager.getConnection(mysql+dataPath, user, pwd)){
-            PreparedStatement ps = conn.prepareStatement(SQL_INSERT);
             Statement statement = conn.createStatement();
             statement.execute("create table if not exists employees\n" +
                     "(\n" +
@@ -42,7 +42,6 @@ public class DBWriter {
                     "\tSalary int null\n" +
                     ");\n" +
                     "\n");
-            ps.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -51,7 +50,10 @@ public class DBWriter {
     public static void insertData(String dataPath, ArrayList<Employee> employees){
         try (Connection conn = DriverManager.getConnection(mysql+dataPath, user, pwd)){
             PreparedStatement ps = conn.prepareStatement(SQL_INSERT);
-            for(int i=1; i< employees.size(); i++){
+            Statement statement = conn.createStatement();
+            statement.executeUpdate(SQL_TRUNCATE);
+
+            for(int i=0; i < employees.size(); i++){
                 ps.setInt(1, employees.get(i).getId());
                 ps.setString(2, employees.get(i).getPrefix());
                 ps.setString(3, employees.get(i).getFirstName());
@@ -62,8 +64,10 @@ public class DBWriter {
                 ps.setString(8, String.valueOf(employees.get(i).getDob()));
                 ps.setString(9, String.valueOf(employees.get(i).getDoj()));
                 ps.setInt(10, employees.get(i).getSalary());
+                ps.executeUpdate();
             }
             ps.close();
+            statement.close();
         } catch (SQLException e){
             e.printStackTrace();
         }

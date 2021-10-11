@@ -51,6 +51,18 @@ public class DataHandler {
         Employee emp = new Employee(Integer.valueOf(empList[0]), empList[1], empList[2], empList[3].charAt(0),
                 empList[4], empList[5].charAt(0), empList[6], dateFormat(empList[7]),
                 dateFormat(empList[8]), Integer.valueOf(empList[9]));
+
+        emp.setId(Integer.valueOf(empList[0]));
+        emp.setPrefix(empList[1]);
+        emp.setFirstName(empList[2]);
+        emp.setInitial(empList[3].charAt(0));
+        emp.setLastName(empList[4]);
+        emp.setGender(empList[5].charAt(0));
+        emp.setEmail(empList[6]);
+        emp.setDob(dateFormat(empList[7]));
+        emp.setDoj(dateFormat(empList[8]));
+        emp.setSalary(Integer.valueOf(empList[9]));
+       // System.out.println("Employeepopulate working" + emp.getFirstName());
         return emp;
     }
 
