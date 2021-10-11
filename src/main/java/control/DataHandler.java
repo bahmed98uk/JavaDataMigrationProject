@@ -10,10 +10,8 @@ import java.util.HashSet;
 public class DataHandler {
 
     public static Date dateFormat(String date) throws ParseException{
-
         java.util.Date dateOriginal = new SimpleDateFormat("MM/dd/yyyy").parse(date);
-        java.util.Date dateNew = new java.sql.Date(dateOriginal.getTime());
-        return dateNew;
+        return new java.sql.Date(dateOriginal.getTime());
     }
 
     public static boolean isValid(String data){
@@ -62,7 +60,6 @@ public class DataHandler {
         emp.setDob(dateFormat(empList[7]));
         emp.setDoj(dateFormat(empList[8]));
         emp.setSalary(Integer.valueOf(empList[9]));
-       // System.out.println("Employeepopulate working" + emp.getFirstName());
         return emp;
     }
 
@@ -73,8 +70,8 @@ public class DataHandler {
         data.clear();
         data.addAll(uniqueElements);
         int dupAmount = oSize - nSize;
-        System.out.println("Original number of employee entries: " + oSize + '\n' +
-                "Valid employee entries: " + nSize + '\n' +
-                "Number of duplicate entries: " + dupAmount);
+        System.out.println("Original number of employees: " + oSize + '\n' +
+                "Non-duplicate employee entries: " + nSize + '\n' +
+                "Duplicate employee entries: " + dupAmount);
     }
 }
