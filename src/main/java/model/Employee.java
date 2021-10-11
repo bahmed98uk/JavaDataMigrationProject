@@ -102,16 +102,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return initial == employee.initial && gender == employee.gender && Objects.equals(id, employee.id) &&
-                Objects.equals(salary, employee.salary) && Objects.equals(prefix, employee.prefix)
-                && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName)
-                && Objects.equals(email, employee.email) && Objects.equals(dob, employee.dob)
-                && Objects.equals(doj, employee.doj);
+        return id.equals(employee.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, salary, prefix, firstName, lastName, email, initial, gender, dob, doj);
+        return Objects.hash(id);
     }
 
     @Override
